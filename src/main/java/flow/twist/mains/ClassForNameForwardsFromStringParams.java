@@ -13,9 +13,8 @@ import flow.twist.transformer.path.PathBuilderResultTransformer;
 
 public class ClassForNameForwardsFromStringParams {
 
-	public static void main(final String[] a) {
-    int threads = Integer.parseInt(a[0]);
-		new AbstractMainAnalysis(java.util.Arrays.copyOfRange(a, 1, a.length)) {
+  public ClassForNameForwardsFromStringParams(int numCores, int N, String[] args) {
+		new AbstractMainAnalysis(args) {
 			@Override
 			protected Set<Path> _executeAnalysis() {
         return null;
@@ -23,8 +22,8 @@ public class ClassForNameForwardsFromStringParams {
 			@Override
 			protected void executeAnalysis() {
 				SolverFactory.runOneDirectionSolver(AnalysisConfigurationBuilder.forwardsFromStringParametersDefaults(false).reporter(
-						new ConsoleReporter()), threads);
+						new ConsoleReporter()), numCores);
 			}
-		}.execute("heros", "soot", "fw", threads);
+		}.execute("heros", "soot", "fw", numCores, N);
 	}
 }

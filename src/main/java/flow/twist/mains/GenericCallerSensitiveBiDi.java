@@ -14,18 +14,17 @@ import flow.twist.transformer.path.PathBuilderResultTransformer;
 
 public class GenericCallerSensitiveBiDi {
 
-	public static void main(final String[] a) {
-    int threads = Integer.parseInt(a[0]);
-		new AbstractMainAnalysis(java.util.Arrays.copyOfRange(a, 1, a.length)) {
+  public GenericCallerSensitiveBiDi(int numCores, int N, String[] args) {
+		new AbstractMainAnalysis(args) {
 			@Override
 			protected void executeAnalysis() {
 				SolverFactory.runBiDirectionSolver(AnalysisConfigurationBuilder.i2oGenericCallerSensitiveDefaults().reporter(
-              new ConsoleReporter()), threads);
+              new ConsoleReporter()), numCores);
 			}
 			@Override
 			protected Set<Path> _executeAnalysis() {
         return null;
 			}
-		}.execute("heros", "soot", "gen", threads);
+		}.execute("heros", "soot", "gen", numCores, N);
 	}
 }

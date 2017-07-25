@@ -12,9 +12,8 @@ import flow.twist.transformer.path.MergeEqualSelectorStrategy;
 import flow.twist.transformer.path.PathBuilderResultTransformer;
 
 public class RA {
-	public static void main(final String[] a) {
-    int threads = Integer.parseInt(a[0]);
-		new AbstractMainAnalysis(java.util.Arrays.copyOfRange(a, 1, a.length)) {
+  public RA(int numCores, int N, String[] args) {
+		new AbstractMainAnalysis(args) {
 			@Override
 			protected Set<Path> _executeAnalysis() {
         return null;
@@ -22,8 +21,8 @@ public class RA {
 			@Override
 			protected void executeAnalysis() {
 				SolverFactory.runRASolver(AnalysisConfigurationBuilder.forwardsFromStringParametersDefaults(false).reporter(
-						new ConsoleReporter()), threads);
+						new ConsoleReporter()), numCores);
 			}
-		}.execute("ra", "soot", "fw", threads);
-	}
+		}.execute("ra", "soot", "fw", numCores, N);
+  }
 }
