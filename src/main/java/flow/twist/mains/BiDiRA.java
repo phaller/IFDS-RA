@@ -12,9 +12,8 @@ import flow.twist.transformer.path.MergeEqualSelectorStrategy;
 import flow.twist.transformer.path.PathBuilderResultTransformer;
 
 public class BiDiRA {
-	public static void main(final String[] a) {
-    int threads = Integer.parseInt(a[0]);
-		new AbstractMainAnalysis(java.util.Arrays.copyOfRange(a, 1, a.length)) {
+  public BiDiRA(int numCores, int N, String[] args) {
+		new AbstractMainAnalysis(args) {
 			@Override
 			protected Set<Path> _executeAnalysis() {
         return null;
@@ -22,8 +21,8 @@ public class BiDiRA {
 			@Override
 			protected void executeAnalysis() {
 				SolverFactory.runBiDiRASolver(AnalysisConfigurationBuilder.i2oSimpleClassForNameDefaults().reporter(
-						new ConsoleReporter()), threads);
+						new ConsoleReporter()), numCores);
 			}
-		}.execute("ra", "soot", "bidi", threads);
+		}.execute("ra", "soot", "bidi", numCores, N);
 	}
 }

@@ -25,11 +25,11 @@ import util.Util;
 public abstract class AbstractAnalysis {
 
   public void execute() {
-    execute("#", "#", "#", -1);
+    execute("#", "#", "#", -1, 0);
   }
 
-	public void execute(String ifds, String sa_lib, String ta, int numThreads) {
-    for (int j=0; j<10; ++j) {
+	public void execute(String ifds, String sa_lib, String ta, int numThreads, int N) {
+    for (int j=0; j<N; ++j) {
       ArrayList<String> argList = createArgs();
       AnalysisReporting.setSootArgs(argList);
       registerAnalysisTransformer(numThreads);

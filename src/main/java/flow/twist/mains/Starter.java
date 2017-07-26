@@ -6,24 +6,25 @@ class Starter {
   public static void main(String[] args) {
     List<String> argList = new ArrayList<String>(Arrays.asList(args));
     System.out.println(Arrays.toString(args));
-    String arg1 = argList.remove(0);
-    String arg2 = argList.remove(0);
-    String arg3 = argList.remove(0);
-    args = new String[args.length-3];
+    String ifdsSolver = argList.remove(0);
+    String saLib = argList.remove(0);
+    String taintAnalysis = argList.remove(0);
+    int numCores = Integer.parseInt(argList.remove(0));
+    int N = Integer.parseInt(argList.remove(0));
+    args = new String[args.length-5];
     argList.toArray(args);
-    System.out.println(Arrays.toString(args));
-    if (arg1.equals("heros") && arg2.equals("soot")) {
+    if (ifdsSolver.equals("heros") && saLib.equals("soot")) {
 
-      if (arg3.equals("fw")) ClassForNameForwardsFromStringParams.main(args);
-      else if (arg3.equals("bidi")) ClassForNameBiDi.main(args);
-      else if (arg3.equals("gen")) GenericCallerSensitiveBiDi.main(args);
+      if (taintAnalysis.equals("fw")) new ClassForNameForwardsFromStringParams(numCores, N, args);
+      else if (taintAnalysis.equals("bidi")) new ClassForNameBiDi(numCores, N, args);
+      else if (taintAnalysis.equals("gen")) new GenericCallerSensitiveBiDi(numCores, N, args);
 
-    } else if (arg1.equals("ra") && arg2.equals("soot")) {
+    } else if (ifdsSolver.equals("ra") && saLib.equals("soot")) {
 
-      if (arg3.equals("fw")) RA.main(args);
-      else if (arg3.equals("bidi")) BiDiRA.main(args);
-      else if (arg3.equals("gen")) GenBiDiRA.main(args);
-      else if (arg3.equals("seq")) RASEQ.main(args);
+      if (taintAnalysis.equals("fw")) new RA(numCores, N, args);
+      else if (taintAnalysis.equals("bidi")) new BiDiRA(numCores, N, args);
+      else if (taintAnalysis.equals("gen")) new GenBiDiRA(numCores, N, args);
+      else if (taintAnalysis.equals("seq")) new RASEQ(numCores, N, args);
 
     } else {
       throw new IllegalArgumentException();
