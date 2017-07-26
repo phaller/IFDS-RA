@@ -2,7 +2,7 @@ lazy val root = (project in file("."))
   .settings(
     name         := "IFDS",
     organization := "se.kth.csc.progsys",
-    scalaVersion := "2.11.8",
+    scalaVersion := "2.11.11",
     version      := "0.1.0-SNAPSHOT",
     mainClass in Compile := Some("flow.twist.mains.Starter"),
     mainClass in assembly := Some("flow.twist.mains.Starter"),
